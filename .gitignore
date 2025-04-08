@@ -1,5 +1,5 @@
 myenv
-data/shipping_labels/
-data/
-images/mug_logo_samples
-images/scanned_products
+data/shipping_labels/*
+data/*
+images/mug_logo_samples/*
+images/scanned_products*
