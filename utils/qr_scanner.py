@@ -1,9 +1,18 @@
 import cv2
+import sys
 import os
+
+def resource_path(relative_path):
+    """Get absolute path to resource, works for dev and for PyInstaller .exe"""
+    base_path = getattr(sys, '_MEIPASS', os.path.abspath("."))
+    return os.path.join(base_path, relative_path)
+
+detect_prototxt = resource_path("models/wechat_qr/detect.prototxt")
+detect_model = resource_path("models/wechat_qr/detect.caffemodel")
+
+
 def read_qr_code_wechat(image_path):
     """Reads QR codes using WeChat's advanced detector."""
-    detect_prototxt = "models/wechat_qr/detect.prototxt"
-    detect_model = "models/wechat_qr/detect.caffemodel"
 
     if not os.path.exists(detect_prototxt): 
         print("❌ WeChat detect_prototxt files not found.")

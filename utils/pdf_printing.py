@@ -5,6 +5,13 @@ import win32print
 import win32api
 import threading
 import time
+import sys
+import os
+
+def resource_path(relative_path):
+    """Get absolute path to resource, works for PyInstaller or dev."""
+    base_path = getattr(sys, '_MEIPASS', os.path.abspath("."))
+    return os.path.join(base_path, relative_path)
 
 def extract_and_print_pdf_page(page_number, copies=1, printer_name=None):
     """
@@ -15,7 +22,7 @@ def extract_and_print_pdf_page(page_number, copies=1, printer_name=None):
     """
     try:
         # Load shipping labels PDF
-        pdf_path = "data/shipping_labels/shipping_labels.pdf"
+        pdf_path = resource_path("data/shipping_labels.pdf")
         reader = PdfReader(pdf_path)
         writer = PdfWriter()
 
